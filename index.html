@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Paaji|Open+Sans+Condensed:300|Lobster" rel="stylesheet">
+  <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+  <script src="app.js"></script>
+  <title>Name Badges</title>
+</head>
+
+<body ng-controller="MainController"> {{name}}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3" style="margin-top: 5em; margin-bottom: 5em;">
+        <form name="form" ng-submit="submitForm(form.$valid)" novalidate>
+          <div class="form-group col-xs-6" ng-class="{'has-error': firstName.length < 4, 'has-success': firstName.length >= 4}">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" ng-minlength="3" ng-model="firstName" id="firstName" name="firstName" placeholder="John/Jane" required autocomplete="off"> </div>
+          <div class="form-group col-xs-6" ng-class="{'has-error': lastName.length < 4, 'has-success': lastName.length >= 4}">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" ng-minlength="3" ng-model="lastName" id="lastName" name="lastName" placeholder="Doe" required autocomplete="off"> </div>
+          <div class="form-group col-xs-6">
+            <label for="userEmail">Email</label>
+            <input type="email" class="form-control" ng-minlength="3" ng-model="userEmail" id="userEmail" name="userEmail" placeholder="myemail@netzero.com" required autocomplete="off"> </div>
+          <div class="form-group col-xs-6" ng-class="{'has-error': birthPlace.length < 1, 'has-success':  birthPlace.length >= 2}">
+            <label for="userEmail">Birth Place</label>
+            <input type="text" class="form-control" ng-minlength="1" ng-model="birthPlace" id="birthPlace" name="birthPlace" placeholder="Mordor" required autocomplete="off"> </div>
+          <div class="form-group col-xs-6" ng-class="{'has-error': phoneNumber.length < 10 || test(), 'has-success': phoneNumber.length >= 10 && !test()}">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" class="form-control" ng-minlength="3" ng-model="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="8885555555" required autocomplete="off"> <small style="color: red;" ng-if="test()">{{warn}}</small> </div>
+          <div class="form-group col-xs-6" ng-class="{'has-error': userFavFood.length < 4, 'has-success': userFavFood.length >= 4}">
+            <label for="userEmail">Favorite Food</label>
+            <input type="text" class="form-control" ng-minlength="3" ng-model="userFavFood" id="userFavFood" name="userFavFood" placeholder="I'm in love with chipotle" required autocomplete="off"> </div>
+          <div class="form-group col-xs-12" ng-class="{'has-error': userBio.length < 11, 'has-success': userBio.length >= 11}">
+            <label for="userEmail">Tell us about yourself</label>
+            <textarea type="text" class="form-control" ng-minlength="3" ng-model="userBio" id="userBio" name="userBio" placeholder="I like cats, I like every kind of cat..." required></textarea>
+          </div>
+          <button type="submit" class="btn-lg btn-primary center-block" ng-class="{}" ng-disabled="form.$invalid">Submit</button>
+        </form>
+      </div>
+      <div class="col-xs-12 col-md-6 col-md-offset-3" ng-repeat="person in people">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h1>Hello</h1> </div>
+          <div class="panel-body">
+            <div class="col-xs-6" style="margin-bottom: 1em;"> <strong>First Name:</strong> {{person.firstName}}</div>
+            <div class="col-xs-6" style="margin-bottom: 1em;"> <strong>Last Name:</strong> {{person.lastName}}</div>
+            <div class="col-xs-6" style="margin-bottom: 1em;"> <strong>Email:</strong> {{person.email}}</div>
+            <div class="col-xs-6" style="margin-bottom: 1em;"> <strong>Birth Place:</strong> {{person.birthPlace}}</div>
+            <div class="col-xs-6" style="margin-bottom: 1em;"> <strong>Phone Number:</strong> {{person.phoneNumber}}</div>
+            <div class="col-xs-6" style="margin-bottom: 1em;"> <strong>Favorite Food:</strong> {{person.favFood}}</div>
+            <label>Bio:</label>
+            <div class="col-xs-12 well">{{person.bio}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
